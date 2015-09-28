@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Twilio.TwiML;
 using Twilio.TwiML.Mvc;
 
@@ -25,7 +26,7 @@ namespace IVRPhoneTree.Web.Controllers
         public TwiMLResult MenuSelection(int userSelection)
         {
             string message;
-            var response = new TwilioResponse();
+            TwilioResponse response;
             switch (userSelection)
             {
                 case 1:
@@ -34,14 +35,14 @@ namespace IVRPhoneTree.Web.Controllers
                               "into an unfinished housing development. Fly over the roadblock. Go " +
                               "passed the moon. Soon after you will see your mother ship. ";
                     
-                    response.Say(message);
+                    response = Say(message, true);
                     return TwiML(response);
                 case 2:
                     return ListPlanets();
                 default:
                     message = "Returning to the main menu.";
 
-                    response.Say(message);
+                    response = Say(message);
                     return TwiML(response);
             }
         }
@@ -59,6 +60,24 @@ namespace IVRPhoneTree.Web.Controllers
                 .EndGather();
 
             return TwiML(response);
+        }
+
+        private static TwilioResponse Say(string message, bool exit = false)
+        {
+            var response = new TwilioResponse();
+            response.Say(message, new {voice = "alice", language = "en-GB"});
+            if (exit)
+            {
+                response.Say("Thank you for calling the ET Phone Home Service - the " +
+                             "adventurous alien's first choice in intergalactic travel.");
+                response.Hangup();
+            }
+            else
+            {
+                response.Redirect("irv/welcome");
+            }
+
+            return response;
         }
     }
 }

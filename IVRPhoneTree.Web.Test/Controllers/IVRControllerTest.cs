@@ -1,5 +1,4 @@
-﻿using System.Configuration;
-using System.IO;
+﻿using System.IO;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
@@ -45,7 +44,7 @@ namespace IVRPhoneTree.Web.Test.Controllers
         }
 
         [Test]
-        public void MenuSelection_say_about_extraction_point_when_1_is_pressed()
+        public void MenuSelection_say_about_extraction_and_hangup_point_when_1_is_pressed()
         {
             var controller = new IVRController();
             var result = controller.MenuSelection(1);
@@ -55,7 +54,9 @@ namespace IVRPhoneTree.Web.Test.Controllers
             Assert.That(_result.ToString(), Is.EqualTo(
                 "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n" +
                 "<Response>\r\n" +
-                "  <Say>To get to your extraction point, get on your bike and go down the street. Then Left down an alley. Avoid the police cars. Turn left into an unfinished housing development. Fly over the roadblock. Go passed the moon. Soon after you will see your mother ship. </Say>\r\n" +
+                "  <Say voice=\"alice\" language=\"en-GB\">To get to your extraction point, get on your bike and go down the street. Then Left down an alley. Avoid the police cars. Turn left into an unfinished housing development. Fly over the roadblock. Go passed the moon. Soon after you will see your mother ship. </Say>\r\n" +
+                "  <Say>Thank you for calling the ET Phone Home Service - the adventurous alien's first choice in intergalactic travel.</Say>\r\n" +
+                "  <Hangup />\r\n" +
                 "</Response>"
                 ));
         }
@@ -79,7 +80,7 @@ namespace IVRPhoneTree.Web.Test.Controllers
         }
 
         [Test]
-        public void MenuSelection_say_returning_to_main_menu_when_other_number_is_pressed()
+        public void MenuSelection_say_returning_to_main_menu_and_redirect_when_other_number_is_pressed()
         {
             var controller = new IVRController();
             var result = controller.MenuSelection(3);
@@ -89,7 +90,8 @@ namespace IVRPhoneTree.Web.Test.Controllers
             Assert.That(_result.ToString(), Is.EqualTo(
                 "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n" +
                 "<Response>\r\n" +
-                "  <Say>Returning to the main menu.</Say>\r\n" +
+                "  <Say voice=\"alice\" language=\"en-GB\">Returning to the main menu.</Say>\r\n" +
+                "  <Redirect>irv/welcome</Redirect>\r\n" +
                 "</Response>"
                 ));
         }
