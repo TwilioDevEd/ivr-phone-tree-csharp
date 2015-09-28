@@ -12,24 +12,27 @@ namespace IVRPhoneTree.Web.Controllers
             return Content("Dial me");
         }
 
+        [HttpPost]
         public TwiMLResult Welcome()
         {
             var response = new TwilioResponse();
-            response.BeginGather(new {action = "", numDigits = "1"})
+            response.BeginGather(new {action = "/ivr/selection", numDigits = "1"})
                 .Play("http://howtodocs.s3.amazonaws.com/et-phone.mp3", new {loop = 3})
                 .EndGather();
 
             return TwiML(response);
         }
 
+        [HttpPost]
         [ActionName("Selection")]
-        public TwiMLResult MenuSelection(int userSelection)
+        public TwiMLResult MenuSelection(string digits)
         {
             string message;
             TwilioResponse response;
+            var userSelection = digits;
             switch (userSelection)
             {
-                case 1:
+                case "1":
                     message = "To get to your extraction point, get on your bike and go down " +
                               "the street. Then Left down an alley. Avoid the police cars. Turn left " +
                               "into an unfinished housing development. Fly over the roadblock. Go " +
@@ -37,29 +40,29 @@ namespace IVRPhoneTree.Web.Controllers
                     
                     response = Say(message, true);
                     return TwiML(response);
-                case 2:
+                case "2":
                     return ListPlanets();
                 default:
-                    message = "Returning to the main menu.";
-
-                    response = Say(message);
+                    response = Say("Returning to the main menu.");
                     return TwiML(response);
             }
         }
 
+        [HttpPost]
         [ActionName("Planets")]
-        public TwiMLResult PlanetSelection(int userSelection)
+        public TwiMLResult PlanetSelection(string digits)
         {
             TwilioResponse response;
+            var userSelection = digits;
             switch (userSelection)
             {
-                case 2:
+                case "2":
                     response = Dial("+12024173378");
                     break;
-                case 3:
+                case "3":
                     response = Dial("+12027336386");
                     break;
-                case 4:
+                case "4":
                     response = Dial("+12027336637");
                     break;
                 default:
@@ -78,7 +81,7 @@ namespace IVRPhoneTree.Web.Controllers
 
             var response = new TwilioResponse();
 
-            response.BeginGather(new {action = "", numDigits = "1"})
+            response.BeginGather(new {action = "/ivr/planets", numDigits = "1"})
                 .Say(message, new {voice = "alice", language = "en-GB", loop = "3"})
                 .EndGather();
 
@@ -97,7 +100,7 @@ namespace IVRPhoneTree.Web.Controllers
             }
             else
             {
-                response.Redirect("irv/welcome");
+                response.Redirect("/ivr/welcome");
             }
 
             return response;
