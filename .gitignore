@@ -204,6 +204,3 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
-
-# Project specific options
-IVRPhoneTree.Web/Web.config
