@@ -95,5 +95,19 @@ namespace IVRPhoneTree.Web.Test.Controllers
                 "</Response>"
                 ));
         }
+
+        [TestCase(2, "Dial")]
+        [TestCase(3, "Dial")]
+        [TestCase(4, "Dial")]
+        [TestCase(1, "Say")]
+        public void PlanetSelection(int userSelection, string expectedVerb)
+        {
+            var controller = new IVRController();
+            var result = controller.PlanetSelection(userSelection);
+
+            result.ExecuteResult(_mockControllerContext.Object);
+
+            StringAssert.Contains(expectedVerb, _result.ToString());
+        }
     }
 }

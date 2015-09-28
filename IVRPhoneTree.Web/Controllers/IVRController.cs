@@ -47,6 +47,29 @@ namespace IVRPhoneTree.Web.Controllers
             }
         }
 
+        [ActionName("Planets")]
+        public TwiMLResult PlanetSelection(int userSelection)
+        {
+            TwilioResponse response;
+            switch (userSelection)
+            {
+                case 2:
+                    response = Dial("+12024173378");
+                    break;
+                case 3:
+                    response = Dial("+12027336386");
+                    break;
+                case 4:
+                    response = Dial("+12027336637");
+                    break;
+                default:
+                    response = Say("Returning to the main menu.");
+                    break;
+            }
+
+            return TwiML(response);
+        }
+
         private TwiMLResult ListPlanets()
         {
             const string message = "To call the planet Broh doe As O G, press 2. To call the planet " +
@@ -76,6 +99,14 @@ namespace IVRPhoneTree.Web.Controllers
             {
                 response.Redirect("irv/welcome");
             }
+
+            return response;
+        }
+
+        private static TwilioResponse Dial(string phoneNumber)
+        {
+            var response = new TwilioResponse();
+            response.Dial(phoneNumber);
 
             return response;
         }
