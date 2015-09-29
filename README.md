@@ -3,3 +3,23 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/klelhitxk1oo3hm8?svg=true)](https://ci.appveyor.com/project/acamino/ivr-phone-tree-csharp)
 
 An example application implementing an automated phone line using Twilio.
+
+## Local development
+
+This project is built using the [ASP.NET MVC](http://www.asp.net/mvc) web framework.
+
+1. First clone this repository and `cd` into its directory:
+   ```
+   git clone git@github.com:TwilioDevEd/ivr-phone-tree-csharp.git
+   open ivr-phone-tree-csharp
+   ```
+
+2. Build the solution
+
+That's it!
+
+## Meta
+
+* No warranty expressed or implied.  Software is as is. Diggity.
+* [MIT License](http://www.opensource.org/licenses/mit-license.html)
+* Lovingly crafted by Twilio Developer Education.
