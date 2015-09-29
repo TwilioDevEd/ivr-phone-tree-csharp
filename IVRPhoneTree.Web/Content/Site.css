@@ -1,24 +1,20 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 90%;
+    background-image: url("http://365psd.com/images/previews/cee/woman-talking-on-the-phone-25962.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 }
 
-/* Set padding to keep content from hitting the edges */
+footer {
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    width: 99%
+}
+
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-}
-
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
-}
-
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
 }

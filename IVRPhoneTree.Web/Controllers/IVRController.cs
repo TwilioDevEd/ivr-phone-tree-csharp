@@ -1,5 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Twilio.TwiML;
 using Twilio.TwiML.Mvc;
 
@@ -9,7 +8,7 @@ namespace IVRPhoneTree.Web.Controllers
     {
         public ActionResult Index()
         {
-            return Content("Dial me");
+            return View();
         }
 
         [HttpPost]
