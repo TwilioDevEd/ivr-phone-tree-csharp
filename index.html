@@ -1,0 +1,140 @@
+<!DOCTYPE html><html><head><title>IVR Phone Tree</title><style>body, html {
+  height:100%;
+  width:100%;
+  padding:0;
+  margin:0;
+  overflow:hidden;
+  background-color:#ddd;
+}
+.wrapper {
+  height:100%;
+  width:100%;
+}</style><link rel="shortcut icon" href="//twilio.com/bundles/marketing/img/favicons/favicon.ico"><link rel="apple-touch-icon" href="//twilio.com/bundles/marketing/img/favicons/favicon_57.png"><link rel="apple-touch-icon" sizes="72x72" href="//twilio.com/bundles/marketing/img/favicons/favicon_72.png"><link rel="apple-touch-icon" sizes="114x114" href="//twilio.com/bundles/marketing/img/favicons/favicon_114.png"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"><link rel="stylesheet" href="viewsaurus.css"></head><body><div class="wrapper"><div id="viewsaurus" data-title="IVR Phone Tree"><div class="saurus-panes"><div class="saurus-prose"><div class="saurus-prose-header"><div class="title-outer"><span class="step-title">IVR Phone Tree</span></div></div><div class="saurus-nav-buttons"><div class="saurus-nav-button nav-overview"><div class="saurus-nav-button-inner"><i class="fa fa-fw fa-list"></i></div><div class="nav-divider"></div></div><div class="saurus-nav-button nav-previous"><div class="saurus-nav-button-inner"><a href=""> <i class="fa fa-fw fa-play fa-rotate-180"></i></a></div><div class="nav-divider"></div></div><div class="saurus-nav-button nav-next clickable"><div class="saurus-nav-button-inner"><a href="#1"> <i class="fa fa-fw fa-play"></i></a></div></div><div class="saurus-next-title"><span class="next-title-inner"></span></div></div><div class="saurus-progress-bar"></div><div class="saurus-start"><p>IVRs (interactive voice response) are automated phone systems that can facilitate communication between callers and businesses. If you've ever dialed your credit card company to check on a balance after responding to a series of automated prompts, you've used an IVR. Learn how to build an IVR in minutes using Twilio's powerful TwiMl API.</p><a href="#0">Start Tutorial</a></div><div class="saurus-content"><div data-title="IVR Phone Tree" class="chapter"><div data-file="IVRPhoneTree.Web/packages.config" class="step"><h2 id="about-this-application">About this application</h2>
+<p><img src="http://howtodocs.s3.amazonaws.com/logo-et-phone2.png" alt="Extra Terrestrial Phone Home
+Service"></p>
+<p>This <a href="//www.asp.net/mvc">ASP.NET MVC</a> sample application is
+modeled after a typical call center experience, but with more <a href="//en.wikipedia.org/wiki/Reese%27s_Pieces#ET:_The_Extra-
+Terrestrial">Reese&#39;s
+Pieces</a>.</p>
+<p>Stranded aliens can call a phone number and receive instructions on how
+to get out of earth safely, or call their home planet
+directly<a href="//bit.ly/asogi">.</a> In this tutorial, we&#39;ll show you the
+key bits of code to make this work.</p>
+<p>To run this sample app yourself, <a href="//github.com/TwilioDevEd/ivr-phone-tree-
+csharp">download the code and follow the
+instructions on GitHub</a>.</p>
+<p>Let&#39;s get started! Click the right arrow above to move to the next step
+of the tutorial.</p>
+<hr>
+<p><strong>See Also:</strong></p>
+<ul>
+<li><a href="//www.asp.net/mvc/overview/getting-started/introduction/getting-started">Getting Started with ASP.NET MVC
+5</a></li>
+<li><a href="//www.twilio.com/docs/csharp/install">The Twilio C# Helper Library</a></li>
+</ul>
+</div><div data-file="IVRPhoneTree.Web/packages.config" class="step"><h2 id="respond-to-the-phone-call">Respond to the Phone Call</h2>
+<p>To initiate the phone tree, we need to configure one of our Twilio
+numbers to send our web application an HTTP request when we
+get an incoming call.</p>
+<p><a href="//www.twilio.com/user/account/phone-numbers/incoming">Click on one of your
+numbers</a> and
+configure the Voice URL to point to our app. In our code the route
+will be <code>/ivr/welcome</code>.</p>
+<p><img src="//s3.amazonaws.com/howtodocs/number-
+config.png" alt="Configuring a Twilio Number"></p>
+<hr>
+<p><strong>See Also:</strong></p>
+<ul>
+<li><a href="//www.twilio.com/help/faq/voice/how-do-i-assign-my-twilio-number-to-my-voice-application">Configuring Twilio Numbers for
+Voice</a></li>
+<li><a href="//www.twilio.com/blog/2013/10/test-your-webhooks-locally-with-ngrok.html">Using ngrok to test your Twilio webhooks locally</a></li>
+</ul>
+</div><div data-file="IVRPhoneTree.Web/Controllers/IVRController.cs" data-highlight="7,14-23" class="step"><h2 id="respond-to-the-twilio-request-with-twiml">Respond to the Twilio request with TwiML</h2>
+<p>Our Twilio number is now configured to <a href="https://www.twilio.com/docs/api/twiml/twilio_request">send HTTP
+requests</a> to this
+controller action on any incoming voice calls. Our app responds with
+<a href="https://www.twilio.com/docs/api/twiml">TwiML</a> to tell Twilio what to do
+in response to the message.</p>
+<p>In this case we tell Twilio to
+<a href="https://www.twilio.com/docs/api/twiml/gather"><code>Gather</code></a> the input from
+the caller and we <a href="https://www.twilio.com/docs/api/twiml/play"><code>Play</code></a> a
+welcome message.</p>
+<hr>
+<p><strong>See Also:</strong></p>
+<ul>
+<li><a href="//www.twilio.com/docs/api/twiml/gather#attributes">Gather attributes</a></li>
+<li><a href="//www.twilio.com/docs/api/twiml/play#attributes-loop">Play &#39;loop&#39; attribute</a></li>
+<li><a href="//github.com/twilio/twilio-csharp/wiki/Twilio.Mvc">Twilio Helpers for ASP.NET
+MVC</a></li>
+<li><a href="//www.twilio.com/blog/2012/02/twilio-for-net-developers-part-5-twilio-client-mvc-and-webmatrix-helper-libraries.html">Twilio for .NET Developers Part
+5</a></li>
+</ul>
+</div><div data-file="IVRPhoneTree.Web/Controllers/IVRController.cs" data-highlight="18" class="step"><h2 id="where-to-send-the-caller-s-input">Where to send the caller&#39;s input</h2>
+<p>The <em>gather&#39;s</em> <code>action</code> parameter takes an absolute or relative URL as a
+value - in our case, the <code>/ivr/selection</code> route.</p>
+<p>When the caller has finished entering digits Twilio will make a
+GET or POST request to this URL including a
+<a href="//www.twilio.com/docs/api/twiml/gather#attributes-
+action-parameters"><code>Digits</code></a> parameter with the number our caller chose.</p>
+<p>After making this request, Twilio will continue the current call using
+the TwiML received in your response. Any TwiML verbs occuring after a
+<code>&lt;Gather&gt;</code> are unreachable, unless the caller enters no digits.</p>
+<hr>
+<p><strong>See Also:</strong></p>
+<ul>
+<li><a href="https://www.twilio.com/docs/api/twiml/twilio_request
+#synchronous-request-parameters">Twilio Request
+parameters</a></li>
+</ul>
+</div><div data-file="IVRPhoneTree.Web/Controllers/IVRController.cs" data-highlight="25-48" class="step"><h2 id="the-main-menu-process-the-caller-s-selection">The Main Menu: Process the caller&#39;s selection</h2>
+<p>This route handles processing the caller&#39;s input.</p>
+<p>If our caller chooses &#39;1&#39; for directions, we use a helper method defined
+below, <code>Say</code>, to respond with TwiML that will
+<a href="//www.twilio.com/docs/api/twiml/say"><code>Say</code></a> directions to our
+caller&#39;s extraction point.</p>
+<p>If the caller chooses &#39;2&#39; to call her home planet, then we need to
+gather more input from her. We wrote another method to handle this,
+<code>ListPlanets</code>, which we&#39;ll cover in the next step.</p>
+<p>If the caller enters anything else we respond with a TwiML
+<a href="//www.twilio.com/docs/api/twiml/redirect"><code>Redirect</code></a> to the main
+menu.</p>
+<hr>
+<p><strong>See Also:</strong></p>
+<ul>
+<li><a href="//msdn.microsoft.com/en-us/library/06tc147t.aspx">switch (C# Reference)</a></li>
+<li><a href="//www.twilio.com/docs/api/twiml/hangup">The TwiML Hangup verb</a></li>
+<li><a href="//www.twilio.com/docs/api/twiml/say#attributes-alice">TwiMl Say: Language Options</a></li>
+</ul>
+</div><div data-file="IVRPhoneTree.Web/Controllers/IVRController.cs" data-highlight="50-88" class="step"><h2 id="the-planet-directory-collect-more-input-from-the-user">The Planet Directory: Collect more input from the user</h2>
+<p>If our caller chooses to call her home planet we will tell her the planet
+directory. This is akin to a typical &quot;company directory&quot; feature of
+most IVRs.</p>
+<p>In our TwiML response we again use a <code>Gather</code> verb to receive our caller&#39;s
+input. The <code>action</code> verb points this time to the <code>planets</code> route, which
+will switch our response based on what the caller chooses.</p>
+<p>The TwiML response we return for that route just uses a
+<a href="//www.twilio.com/docs/api/twiml/dial"><code>Dial</code></a> verb with the
+appropriate phone number to connect our caller to her home planet. We set those
+numbers using environment variables.</p>
+</div><div class="step"><h2 id="where-to-next-">Where to next?</h2>
+<p>That&#39;s it! We&#39;ve just implemented an IVR phone tree that will delight
+and serve your customers.</p>
+<p>If you&#39;re a C# developer working with Twilio, you might enjoy these
+other tutorials:</p>
+<p><a href="//www.twilio.com/docs/howto/walkthrough/automated-survey/csharp/mvc"><strong>Automated
+Survey</strong></a></p>
+<p>Instantly collect structured data from your users with a survey
+conducted over a voice call or SMS text messages. Learn how to create
+your own survey in ASP.NET MVC.</p>
+<p><a href="//www.twilio.com/docs/howto/walkthrough/call-tracking/csharp/mvc"><strong>Call
+Tracking</strong></a></p>
+<p>Convert web traffic into phone calls with the click of a button.</p>
+<h3 id="did-this-help-">Did this help?</h3>
+<p>Thanks for checking out this tutorial! If you have any feedback to share
+with us, we&#39;d love to hear it. Tweet
+<a href="//twitter.com/twilio">@twilio</a> to let us know what you think.</p>
+</div></div>
+<div class="saurus-files" style="display:none;"><textarea class="saurus-file" data-file="IVRPhoneTree.Web/packages.config" data-mode="text">77u/PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHBhY2thZ2VzPgogIDxwYWNrYWdlIGlkPSJBbnRsciIgdmVyc2lvbj0iMy40LjEuOTAwNCIgdGFyZ2V0RnJhbWV3b3JrPSJuZXQ0NSIgLz4KICA8cGFja2FnZSBpZD0iTWljcm9zb2Z0LkFzcE5ldC5NdmMiIHZlcnNpb249IjUuMi4yIiB0YXJnZXRGcmFtZXdvcms9Im5ldDQ1IiAvPgogIDxwYWNrYWdlIGlkPSJNaWNyb3NvZnQuQXNwTmV0LlJhem9yIiB2ZXJzaW9uPSIzLjIuMiIgdGFyZ2V0RnJhbWV3b3JrPSJuZXQ0NSIgLz4KICA8cGFja2FnZSBpZD0iTWljcm9zb2Z0LkFzcE5ldC5XZWIuT3B0aW1pemF0aW9uIiB2ZXJzaW9uPSIxLjEuMyIgdGFyZ2V0RnJhbWV3b3JrPSJuZXQ0NSIgLz4KICA8cGFja2FnZSBpZD0iTWljcm9zb2Z0LkFzcE5ldC5XZWJQYWdlcyIgdmVyc2lvbj0iMy4yLjIiIHRhcmdldEZyYW1ld29yaz0ibmV0NDUiIC8+CiAgPHBhY2thZ2UgaWQ9Ik1pY3Jvc29mdC5XZWIuSW5mcmFzdHJ1Y3R1cmUiIHZlcnNpb249IjEuMC4wLjAiIHRhcmdldEZyYW1ld29yaz0ibmV0NDUiIC8+CiAgPHBhY2thZ2UgaWQ9Ik5ld3RvbnNvZnQuSnNvbiIgdmVyc2lvbj0iNi4wLjQiIHRhcmdldEZyYW1ld29yaz0ibmV0NDUiIC8+CiAgPHBhY2thZ2UgaWQ9IlJlc3RTaGFycCIgdmVyc2lvbj0iMTA1LjIuMiIgdGFyZ2V0RnJhbWV3b3JrPSJuZXQ0NSIgLz4KICA8cGFja2FnZSBpZD0iVHdpbGlvIiB2ZXJzaW9uPSI0LjEuMCIgdGFyZ2V0RnJhbWV3b3JrPSJuZXQ0NSIgLz4KICA8cGFja2FnZSBpZD0iVHdpbGlvLk12YyIgdmVyc2lvbj0iMy4xLjE1IiB0YXJnZXRGcmFtZXdvcms9Im5ldDQ1IiAvPgogIDxwYWNrYWdlIGlkPSJUd2lsaW8uVHdpTUwiIHZlcnNpb249IjMuNC4wIiB0YXJnZXRGcmFtZXdvcms9Im5ldDQ1IiAvPgogIDxwYWNrYWdlIGlkPSJXZWJHcmVhc2UiIHZlcnNpb249IjEuNS4yIiB0YXJnZXRGcmFtZXdvcms9Im5ldDQ1IiAvPgo8L3BhY2thZ2VzPg==</textarea>
+<textarea class="saurus-file" data-file="IVRPhoneTree.Web/Controllers/IVRController.cs" data-mode="csharp">77u/dXNpbmcgU3lzdGVtLldlYi5NdmM7CnVzaW5nIFR3aWxpby5Ud2lNTDsKdXNpbmcgVHdpbGlvLlR3aU1MLk12YzsKCm5hbWVzcGFjZSBJVlJQaG9uZVRyZWUuV2ViLkNvbnRyb2xsZXJzCnsKICAgIHB1YmxpYyBjbGFzcyBJVlJDb250cm9sbGVyIDogVHdpbGlvQ29udHJvbGxlcgogICAgewogICAgICAgIHB1YmxpYyBBY3Rpb25SZXN1bHQgSW5kZXgoKQogICAgICAgIHsKICAgICAgICAgICAgcmV0dXJuIFZpZXcoKTsKICAgICAgICB9CgogICAgICAgIFtIdHRwUG9zdF0KICAgICAgICBwdWJsaWMgVHdpTUxSZXN1bHQgV2VsY29tZSgpCiAgICAgICAgewogICAgICAgICAgICB2YXIgcmVzcG9uc2UgPSBuZXcgVHdpbGlvUmVzcG9uc2UoKTsKICAgICAgICAgICAgcmVzcG9uc2UuQmVnaW5HYXRoZXIobmV3IHthY3Rpb24gPSAiL2l2ci9zZWxlY3Rpb24iLCBudW1EaWdpdHMgPSAiMSJ9KQogICAgICAgICAgICAgICAgLlBsYXkoImh0dHA6Ly9ob3d0b2RvY3MuczMuYW1hem9uYXdzLmNvbS9ldC1waG9uZS5tcDMiLCBuZXcge2xvb3AgPSAzfSkKICAgICAgICAgICAgICAgIC5FbmRHYXRoZXIoKTsKCiAgICAgICAgICAgIHJldHVybiBUd2lNTChyZXNwb25zZSk7CiAgICAgICAgfQoKICAgICAgICBbSHR0cFBvc3RdCiAgICAgICAgW0FjdGlvbk5hbWUoIlNlbGVjdGlvbiIpXQogICAgICAgIHB1YmxpYyBUd2lNTFJlc3VsdCBNZW51U2VsZWN0aW9uKHN0cmluZyBkaWdpdHMpCiAgICAgICAgewogICAgICAgICAgICBzdHJpbmcgbWVzc2FnZTsKICAgICAgICAgICAgVHdpbGlvUmVzcG9uc2UgcmVzcG9uc2U7CiAgICAgICAgICAgIHZhciB1c2VyU2VsZWN0aW9uID0gZGlnaXRzOwogICAgICAgICAgICBzd2l0Y2ggKHVzZXJTZWxlY3Rpb24pCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAgIGNhc2UgIjEiOgogICAgICAgICAgICAgICAgICAgIG1lc3NhZ2UgPSAiVG8gZ2V0IHRvIHlvdXIgZXh0cmFjdGlvbiBwb2ludCwgZ2V0IG9uIHlvdXIgYmlrZSBhbmQgZ28gZG93biAiICsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgInRoZSBzdHJlZXQuIFRoZW4gTGVmdCBkb3duIGFuIGFsbGV5LiBBdm9pZCB0aGUgcG9saWNlIGNhcnMuIFR1cm4gbGVmdCAiICsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgImludG8gYW4gdW5maW5pc2hlZCBob3VzaW5nIGRldmVsb3BtZW50LiBGbHkgb3ZlciB0aGUgcm9hZGJsb2NrLiBHbyAiICsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgInBhc3NlZCB0aGUgbW9vbi4gU29vbiBhZnRlciB5b3Ugd2lsbCBzZWUgeW91ciBtb3RoZXIgc2hpcC4gIjsKICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICByZXNwb25zZSA9IFNheShtZXNzYWdlLCB0cnVlKTsKICAgICAgICAgICAgICAgICAgICByZXR1cm4gVHdpTUwocmVzcG9uc2UpOwogICAgICAgICAgICAgICAgY2FzZSAiMiI6CiAgICAgICAgICAgICAgICAgICAgcmV0dXJuIExpc3RQbGFuZXRzKCk7CiAgICAgICAgICAgICAgICBkZWZhdWx0OgogICAgICAgICAgICAgICAgICAgIHJlc3BvbnNlID0gU2F5KCJSZXR1cm5pbmcgdG8gdGhlIG1haW4gbWVudS4iKTsKICAgICAgICAgICAgICAgICAgICByZXR1cm4gVHdpTUwocmVzcG9uc2UpOwogICAgICAgICAgICB9CiAgICAgICAgfQoKICAgICAgICBbSHR0cFBvc3RdCiAgICAgICAgW0FjdGlvbk5hbWUoIlBsYW5ldHMiKV0KICAgICAgICBwdWJsaWMgVHdpTUxSZXN1bHQgUGxhbmV0U2VsZWN0aW9uKHN0cmluZyBkaWdpdHMpCiAgICAgICAgewogICAgICAgICAgICBUd2lsaW9SZXNwb25zZSByZXNwb25zZTsKICAgICAgICAgICAgdmFyIHVzZXJTZWxlY3Rpb24gPSBkaWdpdHM7CiAgICAgICAgICAgIHN3aXRjaCAodXNlclNlbGVjdGlvbikKICAgICAgICAgICAgewogICAgICAgICAgICAgICAgY2FzZSAiMiI6CiAgICAgICAgICAgICAgICAgICAgcmVzcG9uc2UgPSBEaWFsKCIrMTIwMjQxNzMzNzgiKTsKICAgICAgICAgICAgICAgICAgICBicmVhazsKICAgICAgICAgICAgICAgIGNhc2UgIjMiOgogICAgICAgICAgICAgICAgICAgIHJlc3BvbnNlID0gRGlhbCgiKzEyMDI3MzM2Mzg2Iik7CiAgICAgICAgICAgICAgICAgICAgYnJlYWs7CiAgICAgICAgICAgICAgICBjYXNlICI0IjoKICAgICAgICAgICAgICAgICAgICByZXNwb25zZSA9IERpYWwoIisxMjAyNzMzNjYzNyIpOwogICAgICAgICAgICAgICAgICAgIGJyZWFrOwogICAgICAgICAgICAgICAgZGVmYXVsdDoKICAgICAgICAgICAgICAgICAgICByZXNwb25zZSA9IFNheSgiUmV0dXJuaW5nIHRvIHRoZSBtYWluIG1lbnUuIik7CiAgICAgICAgICAgICAgICAgICAgYnJlYWs7CiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIHJldHVybiBUd2lNTChyZXNwb25zZSk7CiAgICAgICAgfQoKICAgICAgICBwcml2YXRlIFR3aU1MUmVzdWx0IExpc3RQbGFuZXRzKCkKICAgICAgICB7CiAgICAgICAgICAgIGNvbnN0IHN0cmluZyBtZXNzYWdlID0gIlRvIGNhbGwgdGhlIHBsYW5ldCBCcm9oIGRvZSBBcyBPIEcsIHByZXNzIDIuIFRvIGNhbGwgdGhlIHBsYW5ldCAiICsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiRHVoR28gYmFoLCBwcmVzcyAzLiBUbyBjYWxsIGFuIG9vYmVyIGFzdGVyb2lkIHRvIHlvdXIgbG9jYXRpb24sIHByZXNzIDQuIFRvICIgKwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJnbyBiYWNrIHRvIHRoZSBtYWluIG1lbnUsIHByZXNzIHRoZSBzdGFyIGtleSAiOwoKICAgICAgICAgICAgdmFyIHJlc3BvbnNlID0gbmV3IFR3aWxpb1Jlc3BvbnNlKCk7CgogICAgICAgICAgICByZXNwb25zZS5CZWdpbkdhdGhlcihuZXcge2FjdGlvbiA9ICIvaXZyL3BsYW5ldHMiLCBudW1EaWdpdHMgPSAiMSJ9KQogICAgICAgICAgICAgICAgLlNheShtZXNzYWdlLCBuZXcge3ZvaWNlID0gImFsaWNlIiwgbGFuZ3VhZ2UgPSAiZW4tR0IiLCBsb29wID0gIjMifSkKICAgICAgICAgICAgICAgIC5FbmRHYXRoZXIoKTsKCiAgICAgICAgICAgIHJldHVybiBUd2lNTChyZXNwb25zZSk7CiAgICAgICAgfQoKICAgICAgICBwcml2YXRlIHN0YXRpYyBUd2lsaW9SZXNwb25zZSBTYXkoc3RyaW5nIG1lc3NhZ2UsIGJvb2wgZXhpdCA9IGZhbHNlKQogICAgICAgIHsKICAgICAgICAgICAgdmFyIHJlc3BvbnNlID0gbmV3IFR3aWxpb1Jlc3BvbnNlKCk7CiAgICAgICAgICAgIHJlc3BvbnNlLlNheShtZXNzYWdlLCBuZXcge3ZvaWNlID0gImFsaWNlIiwgbGFuZ3VhZ2UgPSAiZW4tR0IifSk7CiAgICAgICAgICAgIGlmIChleGl0KQogICAgICAgICAgICB7CiAgICAgICAgICAgICAgICByZXNwb25zZS5TYXkoIlRoYW5rIHlvdSBmb3IgY2FsbGluZyB0aGUgRVQgUGhvbmUgSG9tZSBTZXJ2aWNlIC0gdGhlICIgKwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICJhZHZlbnR1cm91cyBhbGllbidzIGZpcnN0IGNob2ljZSBpbiBpbnRlcmdhbGFjdGljIHRyYXZlbC4iKTsKICAgICAgICAgICAgICAgIHJlc3BvbnNlLkhhbmd1cCgpOwogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsc2UKICAgICAgICAgICAgewogICAgICAgICAgICAgICAgcmVzcG9uc2UuUmVkaXJlY3QoIi9pdnIvd2VsY29tZSIpOwogICAgICAgICAgICB9CgogICAgICAgICAgICByZXR1cm4gcmVzcG9uc2U7CiAgICAgICAgfQoKICAgICAgICBwcml2YXRlIHN0YXRpYyBUd2lsaW9SZXNwb25zZSBEaWFsKHN0cmluZyBwaG9uZU51bWJlcikKICAgICAgICB7CiAgICAgICAgICAgIHZhciByZXNwb25zZSA9IG5ldyBUd2lsaW9SZXNwb25zZSgpOwogICAgICAgICAgICByZXNwb25zZS5EaWFsKHBob25lTnVtYmVyKTsKCiAgICAgICAgICAgIHJldHVybiByZXNwb25zZTsKICAgICAgICB9CiAgICB9Cn0=</textarea>
+</div>
+</div><div class="saurus-overview"><ul></ul></div></div><div class="saurus-code"><div class="file-path"><span class="crumb-container"></span><i class="fa fa-fw fa-folder"></i></div><div class="saurus-editor"></div></div><div class="saurus-explorer"><div class="saurus-file-list"></div><a href="https://github.com/TwilioDevEd/ivr-phone-tree-csharp" target="_blank" class="explorer-get-code"> <i class="fa fa-lg fa-github-square"> </i>View Code on GitHub</a></div></div></div></div><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script><script src="ace/ace.js"></script><script src="ace/theme-monokai.js"></script><script src="viewsaurus.js"></script></body></html>
