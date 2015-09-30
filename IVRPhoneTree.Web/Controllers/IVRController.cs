@@ -6,36 +6,38 @@ namespace IVRPhoneTree.Web.Controllers
 {
     public class IVRController : TwilioController
     {
+        // GET: ivr
         public ActionResult Index()
         {
             return View();
         }
 
+        // POST: ivr/welcome
         [HttpPost]
         public TwiMLResult Welcome()
         {
             var response = new TwilioResponse();
-            response.BeginGather(new {action = "/ivr/selection", numDigits = "1"})
+            response.BeginGather(new {action = "/ivr/menu", numDigits = "1"})
                 .Play("http://howtodocs.s3.amazonaws.com/et-phone.mp3", new {loop = 3})
                 .EndGather();
 
             return TwiML(response);
         }
 
+        // POST: ivr/menu
         [HttpPost]
-        [ActionName("Selection")]
+        [ActionName("Menu")]
         public TwiMLResult MenuSelection(string digits)
         {
-            string message;
             TwilioResponse response;
             var userSelection = digits;
             switch (userSelection)
             {
                 case "1":
-                    message = "To get to your extraction point, get on your bike and go down " +
-                              "the street. Then Left down an alley. Avoid the police cars. Turn left " +
-                              "into an unfinished housing development. Fly over the roadblock. Go " +
-                              "passed the moon. Soon after you will see your mother ship. ";
+                    const string message = "To get to your extraction point, get on your bike and go down " +
+                                           "the street. Then Left down an alley. Avoid the police cars. Turn left " +
+                                           "into an unfinished housing development. Fly over the roadblock. Go " +
+                                           "passed the moon. Soon after you will see your mother ship. ";
                     
                     response = Say(message, true);
                     return TwiML(response);
@@ -47,6 +49,7 @@ namespace IVRPhoneTree.Web.Controllers
             }
         }
 
+        // POST: ivr/planets
         [HttpPost]
         [ActionName("Planets")]
         public TwiMLResult PlanetSelection(string digits)

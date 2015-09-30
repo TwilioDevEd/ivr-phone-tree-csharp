@@ -36,7 +36,7 @@ namespace IVRPhoneTree.Web.Test.Controllers
             Assert.That(_result.ToString(), Is.EqualTo(
                 "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n" +
                 "<Response>\r\n" +
-                "  <Gather action=\"/ivr/selection\" numDigits=\"1\">\r\n" +
+                "  <Gather action=\"/ivr/menu\" numDigits=\"1\">\r\n" +
                 "    <Play loop=\"3\">http://howtodocs.s3.amazonaws.com/et-phone.mp3</Play>\r\n" +
                 "  </Gather>\r\n" +
                 "</Response>"
