@@ -22,6 +22,7 @@ namespace IVRPhoneTree.Web.Controllers
             return optionPhones.ContainsKey(userOption)
                 ? Dial(optionPhones[userOption]) : RedirectWelcome();
         }
+
         private static TwiMLResult Dial(string phoneNumber)
         {
             var response = new TwilioResponse();
