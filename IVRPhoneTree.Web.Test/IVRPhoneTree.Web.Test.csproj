@@ -90,7 +90,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Controllers\ControllerTest.cs" />
     <Compile Include="Controllers\IVRControllerTest.cs" />
+    <Compile Include="Controllers\MenuControllerTest.cs" />
+    <Compile Include="Controllers\PhoneExchangeControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
