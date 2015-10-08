@@ -1,5 +1,5 @@
 .chapter(data-title='IVR Phone Tree')
-  .step(data-file='IVRPhoneTree.Web/packages.config')
+  .step(data-file='IVRPhoneTree.Web/packages.config', data-mode='xml')
     :markdown
       ## About this application
 
@@ -30,7 +30,7 @@
       5](//www.asp.net/mvc/overview/getting-started/introduction/getting-started)
       * [The Twilio C# Helper Library](//www.twilio.com/docs/csharp/install)
 
-  .step(data-file='IVRPhoneTree.Web/packages.config')
+  .step(data-file='IVRPhoneTree.Web/packages.config', data-mode='xml')
     :markdown
       ## Respond to the Phone Call
 
@@ -54,7 +54,7 @@
       * [Using ngrok to test your Twilio webhooks locally](//www.twilio.com/blog/2013/10/test-your-webhooks-locally-with-ngrok.html)
 
   .step(data-file='IVRPhoneTree.Web/Controllers/IVRController.cs',
-  data-highlight='7,15-25')
+  data-highlight='15-25')
     :markdown
       ## Respond to the Twilio request with TwiML
 
@@ -103,21 +103,21 @@
         parameters](//www.twilio.com/docs/api/twiml/twilio_request
         #synchronous-request-parameters)
 
-  .step(data-file='IVRPhoneTree.Web/Controllers/IVRController.cs',
-  data-highlight='27-50')
+  .step(data-file='IVRPhoneTree.Web/Controllers/MenuController.cs',
+  data-highlight='11-25')
     :markdown
       ## The Main Menu: Process the caller's selection
 
       This route handles processing the caller's input.
 
       If our caller chooses '1' for directions, we use a helper method defined
-      below, `Say`, to respond with TwiML that will
+      below, `ReturnInstructions`, to respond with TwiML that will
       [`Say`](//www.twilio.com/docs/api/twiml/say) directions to our
       caller's extraction point.
 
       If the caller chooses '2' to call her home planet, then we need to
-      gather more input from her. We wrote another method to handle this,
-      `ListPlanets`, which we'll cover in the next step.
+      gather more input from her. We wrote another controller to handle this,
+      `PhoneExchange/Interconnect`, which we'll cover in the next step.
 
       If the caller enters anything else we respond with a TwiML
       [`Redirect`](//www.twilio.com/docs/api/twiml/redirect) to the main
@@ -132,8 +132,8 @@
       * [The TwiML Hangup verb](//www.twilio.com/docs/api/twiml/hangup)
       * [TwiMl Say: Language Options](//www.twilio.com/docs/api/twiml/say#attributes-alice)
 
-  .step(data-file='IVRPhoneTree.Web/Controllers/IVRController.cs',
-  data-highlight='53-91')
+  .step(data-file='IVRPhoneTree.Web/Controllers/PhoneExchangeController.cs',
+  data-highlight='10-24')
     :markdown
       ## The Planet Directory: Collect more input from the user
 
@@ -147,8 +147,9 @@
 
       The TwiML response we return for that route just uses a
       [`Dial`](//www.twilio.com/docs/api/twiml/dial) verb with the
-      appropriate phone number to connect our caller to her home planet. We set those
-      numbers using environment variables.
+      appropriate phone number to connect our caller to her home planet. In a
+      production application, we'll set those numbers using environment
+      variables.
 
   .step
     :markdown
