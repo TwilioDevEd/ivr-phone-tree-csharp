@@ -104,7 +104,7 @@
         #synchronous-request-parameters)
 
   .step(data-file='IVRPhoneTree.Web/Controllers/MenuController.cs',
-  data-highlight='11-25')
+  data-highlight='11-42')
     :markdown
       ## The Main Menu: Process the caller's selection
 
@@ -116,8 +116,7 @@
       caller's extraction point.
 
       If the caller chooses '2' to call her home planet, then we need to
-      gather more input from her. We wrote another controller to handle this,
-      `PhoneExchange/Interconnect`, which we'll cover in the next step.
+      gather more input from her. We'll cover this in the next step.
 
       If the caller enters anything else we respond with a TwiML
       [`Redirect`](//www.twilio.com/docs/api/twiml/redirect) to the main
@@ -132,10 +131,10 @@
       * [The TwiML Hangup verb](//www.twilio.com/docs/api/twiml/hangup)
       * [TwiMl Say: Language Options](//www.twilio.com/docs/api/twiml/say#attributes-alice)
 
-  .step(data-file='IVRPhoneTree.Web/Controllers/PhoneExchangeController.cs',
-  data-highlight='10-24')
+  .step(data-file='IVRPhoneTree.Web/Controllers/MenuController.cs',
+  data-highlight='44-55')
     :markdown
-      ## The Planet Directory: Collect more input from the user
+      ## The Planet Directory: Collect more input from the caller
 
       If our caller chooses to call her home planet we will tell her the planet
       directory. This is akin to a typical "company directory" feature of
@@ -145,11 +144,21 @@
       input. The `action` verb points this time to the `planets` route, which
       will switch our response based on what the caller chooses.
 
-      The TwiML response we return for that route just uses a
-      [`Dial`](//www.twilio.com/docs/api/twiml/dial) verb with the
-      appropriate phone number to connect our caller to her home planet. In a
-      production application, we'll set those numbers using environment
-      variables.
+      Let's look at that route next.
+
+  .step(data-file='IVRPhoneTree.Web/Controllers/PhoneExchangeController.cs',
+  data-highlight='10-32')
+    :markdown
+      ## The Planet Directory: Connect the caller to another number
+
+      In this route, we grab the caller's selection off the request and store
+      it in a variable called `userOption`. We then use a
+      [`Dial`](https://www.twilio.com/docs/api/twiml/dial) verb with
+      the appropriate phone number to connect our caller to her home
+      planet.
+
+      The current numbers are hardcoded, but they could also be
+      read from a database or from a file.
 
   .step
     :markdown

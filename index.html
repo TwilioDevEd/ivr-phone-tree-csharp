@@ -86,15 +86,14 @@ the TwiML received in your response. Any TwiML verbs occuring after a
 #synchronous-request-parameters">Twilio Request
 parameters</a></li>
 </ul>
-</div><div data-file="IVRPhoneTree.Web/Controllers/MenuController.cs" data-highlight="11-25" class="step"><h2 id="the-main-menu-process-the-caller-s-selection">The Main Menu: Process the caller&#39;s selection</h2>
+</div><div data-file="IVRPhoneTree.Web/Controllers/MenuController.cs" data-highlight="11-42" class="step"><h2 id="the-main-menu-process-the-caller-s-selection">The Main Menu: Process the caller&#39;s selection</h2>
 <p>This route handles processing the caller&#39;s input.</p>
 <p>If our caller chooses &#39;1&#39; for directions, we use a helper method defined
 below, <code>ReturnInstructions</code>, to respond with TwiML that will
 <a href="//www.twilio.com/docs/api/twiml/say"><code>Say</code></a> directions to our
 caller&#39;s extraction point.</p>
 <p>If the caller chooses &#39;2&#39; to call her home planet, then we need to
-gather more input from her. We wrote another controller to handle this,
-<code>PhoneExchange/Interconnect</code>, which we&#39;ll cover in the next step.</p>
+gather more input from her. We&#39;ll cover this in the next step.</p>
 <p>If the caller enters anything else we respond with a TwiML
 <a href="//www.twilio.com/docs/api/twiml/redirect"><code>Redirect</code></a> to the main
 menu.</p>
@@ -107,18 +106,22 @@ Class</a></li>
 <li><a href="//www.twilio.com/docs/api/twiml/hangup">The TwiML Hangup verb</a></li>
 <li><a href="//www.twilio.com/docs/api/twiml/say#attributes-alice">TwiMl Say: Language Options</a></li>
 </ul>
-</div><div data-file="IVRPhoneTree.Web/Controllers/PhoneExchangeController.cs" data-highlight="10-24" class="step"><h2 id="the-planet-directory-collect-more-input-from-the-user">The Planet Directory: Collect more input from the user</h2>
+</div><div data-file="IVRPhoneTree.Web/Controllers/MenuController.cs" data-highlight="44-55" class="step"><h2 id="the-planet-directory-collect-more-input-from-the-caller">The Planet Directory: Collect more input from the caller</h2>
 <p>If our caller chooses to call her home planet we will tell her the planet
 directory. This is akin to a typical &quot;company directory&quot; feature of
 most IVRs.</p>
 <p>In our TwiML response we again use a <code>Gather</code> verb to receive our caller&#39;s
 input. The <code>action</code> verb points this time to the <code>planets</code> route, which
 will switch our response based on what the caller chooses.</p>
-<p>The TwiML response we return for that route just uses a
-<a href="//www.twilio.com/docs/api/twiml/dial"><code>Dial</code></a> verb with the
-appropriate phone number to connect our caller to her home planet. In a
-production application, we&#39;ll set those numbers using environment
-variables.</p>
+<p>Let&#39;s look at that route next.</p>
+</div><div data-file="IVRPhoneTree.Web/Controllers/PhoneExchangeController.cs" data-highlight="10-32" class="step"><h2 id="the-planet-directory-connect-the-caller-to-another-number">The Planet Directory: Connect the caller to another number</h2>
+<p>In this route, we grab the caller&#39;s selection off the request and store
+it in a variable called <code>userOption</code>. We then use a
+<a href="https://www.twilio.com/docs/api/twiml/dial"><code>Dial</code></a> verb with
+the appropriate phone number to connect our caller to her home
+planet.</p>
+<p>The current numbers are hardcoded, but they could also be
+read from a database or from a file.</p>
 </div><div class="step"><h2 id="where-to-next-">Where to next?</h2>
 <p>That&#39;s it! We&#39;ve just implemented an IVR phone tree that will delight
 and serve your customers.</p>
