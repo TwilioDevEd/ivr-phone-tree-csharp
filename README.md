@@ -4,6 +4,8 @@
 
 An example application implementing an automated phone line using Twilio.
 
+[Read the full tutorial here](https://www.twilio.com/docs/tutorials/walkthrough/ivr-phone-tree/csharp/mvc)!
+
 ## Local development
 
 This project is built using the [ASP.NET MVC](http://www.asp.net/mvc) web framework.
