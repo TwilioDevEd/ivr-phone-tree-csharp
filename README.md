@@ -38,7 +38,9 @@ This project is built using the [ASP.NET MVC](http://www.asp.net/mvc) web framew
 
 1. Configure Twilio to call your webhooks
 
-  You will also need to configure Twilio to call your application when calls are received on your `TWILIO_NUMBER`. The voice url should look something like this:
+  You will also need to configure Twilio to call your application when calls are
+  received in your [*Twilio Number*](https://www.twilio.com/user/account/messaging/phone-numbers).
+  The voice url should look something like this:
 
   ```
   http://<your-ngrok-subdomain>.ngrok.io/Conference/ConnectClient
