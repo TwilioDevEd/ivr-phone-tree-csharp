@@ -16,9 +16,37 @@ This project is built using the [ASP.NET MVC](http://www.asp.net/mvc) web framew
    cd ivr-phone-tree-csharp
    ```
 
-2. Build the solution
+1. Build the solution.
 
-That's it!
+1. Expose your application to the wider internet using [ngrok](http://ngrok.com). This step
+  is important because the application won't work as expected if you run it through
+  localhost.
+
+  To start using `ngrok` in our project you'll have execute to the following line in the _command prompt_.
+
+  ```shell
+  ngrok http 55585 -host-header="localhost:55585"
+  ```
+
+  Keep in mind that our endpoint is:
+
+  ```
+  http://<your-ngrok-subdomain>.ngrok.io/Conference/ConnectClient
+  ```
+
+  Remember to update the Local.config file with the generated <your-ngrok-subdomain>.
+
+1. Configure Twilio to call your webhooks.
+
+  You will also need to configure Twilio to call your application when calls are
+  received in your [*Twilio Number*](https://www.twilio.com/user/account/messaging/phone-numbers).
+  The voice url should look something like this:
+
+  ```
+  http://<your-ngrok-subdomain>.ngrok.io/Conference/ConnectClient
+  ```
+
+  ![Configure Voice](http://howtodocs.s3.amazonaws.com/twilio-number-config-all-med.gif)
 
 ## Meta
 
