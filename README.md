@@ -1,3 +1,7 @@
+<a href="https://www.twilio.com">
+  <img src="https://static0.twilio.com/marketing/bundles/marketing/img/logos/wordmark-red.svg" alt="Twilio" width="250" />
+</a>
+
 # IVR Phone Tree: IVR for beginners. Powered by Twilio - ASP.NET MVC
 
 [![Build status](https://ci.appveyor.com/api/projects/status/ktdh5pqmkc39ljng?svg=true)](https://ci.appveyor.com/project/TwilioDevEd/ivr-phone-tree-csharp)
@@ -25,13 +29,13 @@ This project is built using the [ASP.NET MVC](http://www.asp.net/mvc) web framew
   To start using `ngrok` in our project you'll have execute to the following line in the _command prompt_.
 
   ```shell
-  ngrok http 55585 -host-header="localhost:55585"
+  ngrok http 1112 -host-header="localhost:1112"
   ```
 
   Keep in mind that our endpoint is:
 
   ```
-  http://<your-ngrok-subdomain>.ngrok.io/Conference/ConnectClient
+  http://<your-ngrok-subdomain>.ngrok.io/ivr/welcome
   ```
 
   Remember to update the Local.config file with the generated <your-ngrok-subdomain>.
@@ -43,7 +47,7 @@ This project is built using the [ASP.NET MVC](http://www.asp.net/mvc) web framew
   The voice url should look something like this:
 
   ```
-  http://<your-ngrok-subdomain>.ngrok.io/Conference/ConnectClient
+  http://<your-ngrok-subdomain>.ngrok.io/ivr/welcome
   ```
 
   ![Configure Voice](http://howtodocs.s3.amazonaws.com/twilio-number-config-all-med.gif)
