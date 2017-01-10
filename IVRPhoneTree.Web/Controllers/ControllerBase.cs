@@ -1,18 +1,20 @@
-﻿using Twilio.TwiML;
-using Twilio.TwiML.Mvc;
+﻿using System.Web.Mvc;
+using Twilio.TwiML;
 
 namespace IVRPhoneTree.Web.Controllers
 {
-    public abstract class ControllerBase : TwilioController
+    public abstract class ControllerBase : Controller
     {
-        public TwiMLResult RedirectWelcome()
+        public ActionResult RedirectWelcome()
         {
-            var response = new TwilioResponse();
+            var response = new VoiceResponse();
             response.Say("Returning to the main menu",
-                new {voice = "alice", language = "en-GB"});
+                voice: "alice",
+                language:  "en-GB"
+            );
             response.Redirect(Url.Action("Welcome", "IVR"));
 
-            return new TwiMLResult(response);
+            return Content(response.ToString(), "application/xml");
         }
     }
 }
