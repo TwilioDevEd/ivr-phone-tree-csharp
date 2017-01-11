@@ -1,26 +1,33 @@
-﻿using IVRPhoneTree.Web.Controllers;
+﻿using System.Xml.XPath;
+using FluentMvcTesting.Extensions;
+using FluentMvcTesting.Extensions.Mocks;
+using IVRPhoneTree.Web.Controllers;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 // ReSharper disable PossibleNullReferenceException
 
 namespace IVRPhoneTree.Web.Test.Controllers
 {
-    public class IVRControllerTest : ControllerTest
+    public class IVRControllerTest
     {
-
         [Test]
         public void GivenAWelcomeAction_ThenTheResponseContainsGatherPlay()
         {
-            var controller = new IVRController { Url = Url };
-            var result = controller.Welcome();
+            var controllerPropertiesMock = new ControllerPropertiesMock();
+            var controller = new IVRController
+            {
+                ControllerContext = controllerPropertiesMock.ControllerContext,
+                Url = controllerPropertiesMock.Url(RouteConfig.RegisterRoutes)
+            };
 
-            result.ExecuteResult(MockControllerContext.Object);
-
-            var document = LoadXml(Result.ToString());
-
-            Assert.That(document.SelectSingleNode("Response/Gather/Play"), Is.Not.Null);
-            Assert.That(document.SelectSingleNode("Response/Gather").Attributes["action"].Value,
-                Is.EqualTo("/Menu/Show"));
+            controller.WithCallTo(c => c.Welcome())
+                .ShouldReturnXmlResult(data =>
+                {
+                    Assert.That(data.XPathSelectElement("Response/Gather/Play"), Is.Not.Null);
+                    Assert.That(data.XPathSelectElement("Response/Gather").Attribute("action").Value,
+                        Is.EqualTo("/Menu/Show"));
+                });
         }
     }
 }

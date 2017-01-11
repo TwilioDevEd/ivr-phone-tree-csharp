@@ -1,52 +1,62 @@
-﻿using IVRPhoneTree.Web.Controllers;
+﻿using System.Linq;
+using System.Xml.XPath;
+using FluentMvcTesting.Extensions;
+using FluentMvcTesting.Extensions.Mocks;
+using IVRPhoneTree.Web.Controllers;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 // ReSharper disable PossibleNullReferenceException
 
 namespace IVRPhoneTree.Web.Test.Controllers
 {
-    public class MenuControllerTest : ControllerTest
+    public class MenuControllerTest
     {
+        private MenuController _controller;
+
+        [SetUp]
+        public void SetUp()
+        {
+            var controllerPropertiesMock = new ControllerPropertiesMock();
+            _controller = new MenuController
+            {
+                ControllerContext = controllerPropertiesMock.ControllerContext,
+                Url = controllerPropertiesMock.Url(RouteConfig.RegisterRoutes)
+            };
+        }
+
         [Test]
         public void GivenAShowAction_WhenTheSelectedOptionIs1_ThenTheResponseContainsSayTwiceAndAHangup()
         {
-            var controller = new MenuController();
-            var result = controller.Show("1");
-
-            result.ExecuteResult(MockControllerContext.Object);
-
-            var document = LoadXml(Result.ToString());
-
-            Assert.That(document.SelectNodes("Response/Say").Count, Is.EqualTo(2));
-            Assert.That(document.SelectSingleNode("Response/Hangup"), Is.Not.Null);
+            _controller.WithCallTo(c => c.Show("1"))
+                .ShouldReturnXmlResult(data =>
+                {
+                    Assert.That(data.XPathSelectElements("Response/Say").Count(), Is.EqualTo(2));
+                    Assert.That(data.XPathSelectElement("Response/Hangup"), Is.Not.Null);
+                });
         }
 
         [Test]
         public void GivenAShowAction_WhenTheSelectedOptionIs2_ThenTheResponseContainsGatherAndSay()
         {
-            var controller = new MenuController {Url = Url};
-            var result = controller.Show("2");
-
-            result.ExecuteResult(MockControllerContext.Object);
-
-            var document = LoadXml(Result.ToString());
-
-            Assert.That(document.SelectSingleNode("Response/Gather/Say"), Is.Not.Null);
-            Assert.That(document.SelectSingleNode("Response/Gather").Attributes["action"].Value,
-                Is.EqualTo("/PhoneExchange/Interconnect"));
+            _controller.WithCallTo(c => c.Show("2"))
+                .ShouldReturnXmlResult(data =>
+                {
+                    Assert.That(data.XPathSelectElement("Response/Gather/Say"), Is.Not.Null);
+                    Assert.That(data.XPathSelectElement("Response/Gather").Attribute("action").Value,
+                        Is.EqualTo("/PhoneExchange/Interconnect"));
+                });
         }
 
         [Test]
         public void GivenAShowAction_WhenTheSelectedOptionIsDifferentThan_1_Or_2_ThenTheResponseRedirectsToIVRWelcome()
         {
-            var controller = new MenuController { Url = Url };
-            var result = controller.Show("*");
-
-            result.ExecuteResult(MockControllerContext.Object);
-
-            var document = LoadXml(Result.ToString());
-
-            Assert.That(document.SelectSingleNode("Response/Redirect").InnerText, Is.EqualTo("/IVR/Welcome"));
+            _controller.WithCallTo(c => c.Show("*"))
+                .ShouldReturnXmlResult(data =>
+                {
+                    Assert.That(data.XPathSelectElement("Response/Redirect").Value,
+                        Is.EqualTo("/IVR/Welcome"));
+                });
         }
     }
 }

@@ -27,7 +27,7 @@ namespace IVRPhoneTree.Web.Controllers
             var response = new VoiceResponse();
             response.Dial(phoneNumber);
 
-            return Content(response.ToString(), "application/xml");
+            return Content(response.ToString(), "text/xml");
         }
     }
 }

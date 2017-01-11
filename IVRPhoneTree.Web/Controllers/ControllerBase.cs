@@ -14,7 +14,7 @@ namespace IVRPhoneTree.Web.Controllers
             );
             response.Redirect(Url.Action("Welcome", "IVR"));
 
-            return Content(response.ToString(), "application/xml");
+            return Content(response.ToString(), "text/xml");
         }
     }
 }

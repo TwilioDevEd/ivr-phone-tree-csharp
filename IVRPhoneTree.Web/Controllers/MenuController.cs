@@ -37,7 +37,7 @@ namespace IVRPhoneTree.Web.Controllers
 
             response.Hangup();
 
-            return Content(response.ToString(), "application/xml");
+            return Content(response.ToString(), "text/xml");
         }
 
         private ActionResult Planets()
@@ -50,7 +50,7 @@ namespace IVRPhoneTree.Web.Controllers
                      voice: "alice", language: "en-GB", loop: 3);
             response.Gather(gather);
 
-            return Content(response.ToString(), "application/xml");
+            return Content(response.ToString(), "text/xml");
         }
     }
 }
