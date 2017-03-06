@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using Twilio.TwiML;
-using Twilio.TwiML.Mvc;
 
 namespace IVRPhoneTree.Web.Controllers
 {
@@ -9,7 +8,7 @@ namespace IVRPhoneTree.Web.Controllers
     {
         // POST: PhoneExchange/Interconnect
         [HttpPost]
-        public TwiMLResult Interconnect(string digits)
+        public ActionResult Interconnect(string digits)
         {
             var userOption = digits;
             var optionPhones = new Dictionary<string, string>
@@ -23,12 +22,12 @@ namespace IVRPhoneTree.Web.Controllers
                 ? Dial(optionPhones[userOption]) : RedirectWelcome();
         }
 
-        private static TwiMLResult Dial(string phoneNumber)
+        private ActionResult Dial(string phoneNumber)
         {
-            var response = new TwilioResponse();
+            var response = new VoiceResponse();
             response.Dial(phoneNumber);
 
-            return new TwiMLResult(response);
+            return Content(response.ToString(), "text/xml");
         }
     }
 }
