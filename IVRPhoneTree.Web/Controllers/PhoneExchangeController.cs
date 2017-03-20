@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using Twilio.AspNet.Mvc;
 using Twilio.TwiML;
 
 namespace IVRPhoneTree.Web.Controllers
@@ -22,12 +23,12 @@ namespace IVRPhoneTree.Web.Controllers
                 ? Dial(optionPhones[userOption]) : RedirectWelcome();
         }
 
-        private ActionResult Dial(string phoneNumber)
+        private TwiMLResult Dial(string phoneNumber)
         {
             var response = new VoiceResponse();
             response.Dial(phoneNumber);
 
-            return Content(response.ToString(), "text/xml");
+            return TwiML(response);
         }
     }
 }

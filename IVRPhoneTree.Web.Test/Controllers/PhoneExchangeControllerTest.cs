@@ -2,6 +2,7 @@
 using FluentMvcTesting.Extensions;
 using FluentMvcTesting.Extensions.Mocks;
 using IVRPhoneTree.Web.Controllers;
+using IVRPhoneTree.Web.Test.Extensions;
 using NUnit.Framework;
 using TestStack.FluentMVCTesting;
 
@@ -30,7 +31,7 @@ namespace IVRPhoneTree.Web.Test.Controllers
         public void GivenAShowAction_WhenTheSelectedOptionIsEither_2_Or_3_Or_4_ThenTheResponseContainsDial(string userOption)
         {
             _controller.WithCallTo(c => c.Interconnect(userOption))
-                .ShouldReturnXmlResult(data =>
+                .ShouldReturnTwiMLResult(data =>
                 {
                     Assert.That(data.XPathSelectElement("Response/Dial"), Is.Not.Null);
                     Assert.That(data.XPathSelectElement("Response/Dial").Value, Is.Not.Null);
@@ -42,7 +43,7 @@ namespace IVRPhoneTree.Web.Test.Controllers
         public void GivenAShowAction_WhenTheSelectedOptionIsDifferentThan_2_Or_3_Or_4_ThenTheResponseRedirectsToIVRWelcome()
         {
             _controller.WithCallTo(c => c.Interconnect("*"))
-                .ShouldReturnXmlResult(data =>
+                .ShouldReturnTwiMLResult(data =>
                 {
                     Assert.That(data.XPathSelectElement("Response/Redirect").Value, Is.EqualTo("/IVR/Welcome"));
                 });
