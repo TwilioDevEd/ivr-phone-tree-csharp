@@ -3,6 +3,7 @@ using System.Xml.XPath;
 using FluentMvcTesting.Extensions;
 using FluentMvcTesting.Extensions.Mocks;
 using IVRPhoneTree.Web.Controllers;
+using IVRPhoneTree.Web.Test.Extensions;
 using NUnit.Framework;
 using TestStack.FluentMVCTesting;
 
@@ -29,7 +30,7 @@ namespace IVRPhoneTree.Web.Test.Controllers
         public void GivenAShowAction_WhenTheSelectedOptionIs1_ThenTheResponseContainsSayTwiceAndAHangup()
         {
             _controller.WithCallTo(c => c.Show("1"))
-                .ShouldReturnXmlResult(data =>
+                .ShouldReturnTwiMLResult(data =>
                 {
                     Assert.That(data.XPathSelectElements("Response/Say").Count(), Is.EqualTo(2));
                     Assert.That(data.XPathSelectElement("Response/Hangup"), Is.Not.Null);
@@ -40,7 +41,7 @@ namespace IVRPhoneTree.Web.Test.Controllers
         public void GivenAShowAction_WhenTheSelectedOptionIs2_ThenTheResponseContainsGatherAndSay()
         {
             _controller.WithCallTo(c => c.Show("2"))
-                .ShouldReturnXmlResult(data =>
+                .ShouldReturnTwiMLResult(data =>
                 {
                     Assert.That(data.XPathSelectElement("Response/Gather/Say"), Is.Not.Null);
                     Assert.That(data.XPathSelectElement("Response/Gather").Attribute("action").Value,
@@ -52,7 +53,7 @@ namespace IVRPhoneTree.Web.Test.Controllers
         public void GivenAShowAction_WhenTheSelectedOptionIsDifferentThan_1_Or_2_ThenTheResponseRedirectsToIVRWelcome()
         {
             _controller.WithCallTo(c => c.Show("*"))
-                .ShouldReturnXmlResult(data =>
+                .ShouldReturnTwiMLResult(data =>
                 {
                     Assert.That(data.XPathSelectElement("Response/Redirect").Value,
                         Is.EqualTo("/IVR/Welcome"));

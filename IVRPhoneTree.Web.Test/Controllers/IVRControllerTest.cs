@@ -1,7 +1,7 @@
 ﻿using System.Xml.XPath;
-using FluentMvcTesting.Extensions;
 using FluentMvcTesting.Extensions.Mocks;
 using IVRPhoneTree.Web.Controllers;
+using IVRPhoneTree.Web.Test.Extensions;
 using NUnit.Framework;
 using TestStack.FluentMVCTesting;
 
@@ -22,7 +22,7 @@ namespace IVRPhoneTree.Web.Test.Controllers
             };
 
             controller.WithCallTo(c => c.Welcome())
-                .ShouldReturnXmlResult(data =>
+                .ShouldReturnTwiMLResult(data =>
                 {
                     Assert.That(data.XPathSelectElement("Response/Gather/Play"), Is.Not.Null);
                     Assert.That(data.XPathSelectElement("Response/Gather").Attribute("action").Value,

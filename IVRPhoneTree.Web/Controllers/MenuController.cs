@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Twilio.AspNet.Mvc;
 using Twilio.TwiML;
 
 namespace IVRPhoneTree.Web.Controllers
@@ -23,7 +24,7 @@ namespace IVRPhoneTree.Web.Controllers
                 RedirectWelcome();
         }
 
-        private ActionResult ReturnInstructions()
+        private TwiMLResult ReturnInstructions()
         {
             var response = new VoiceResponse();
             response.Say("To get to your extraction point, get on your bike and go down " +
@@ -37,10 +38,10 @@ namespace IVRPhoneTree.Web.Controllers
 
             response.Hangup();
 
-            return Content(response.ToString(), "text/xml");
+            return TwiML(response);
         }
 
-        private ActionResult Planets()
+        private TwiMLResult Planets()
         {
             var response = new VoiceResponse();
             var gather = new Gather(action: Url.Action("Interconnect", "PhoneExchange"), numDigits: 1);
@@ -50,7 +51,7 @@ namespace IVRPhoneTree.Web.Controllers
                      voice: "alice", language: "en-GB", loop: 3);
             response.Gather(gather);
 
-            return Content(response.ToString(), "text/xml");
+            return TwiML(response);
         }
     }
 }
