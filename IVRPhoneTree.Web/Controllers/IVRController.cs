@@ -18,7 +18,7 @@ namespace IVRPhoneTree.Web.Controllers
         {
             var response = new VoiceResponse();
             var gather = new Gather(action: Url.Action("Show", "Menu"), numDigits: 1);
-            gather.Play("http://howtodocs.s3.amazonaws.com/et-phone.mp3", loop: 3);
+            gather.Play("https://raw.githubusercontent.com/TwilioDevEd/ivr-phone-tree-servlets/master/et-phone.mp3", loop: 3);
             response.Gather(gather);
 
             return TwiML(response);
