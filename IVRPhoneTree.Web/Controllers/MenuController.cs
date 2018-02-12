@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using Twilio.AspNet.Mvc;
 using Twilio.TwiML;
+using Twilio.TwiML.Voice;
 
 namespace IVRPhoneTree.Web.Controllers
 {
@@ -33,8 +34,8 @@ namespace IVRPhoneTree.Web.Controllers
                          "passed the moon. Soon after you will see your mother ship.",
                          voice: "alice", language: "en-GB");
 
-            response.Say("Thank you for calling the ET Phone Home Service - the " +
-                         "adventurous alien's first choice in intergalactic travel");
+            response.Say("Thank you for calling the E.T. Phone Home Service - the " +
+                         "adventurous alien's first choice in intergalactic travel. Good bye.");
 
             response.Hangup();
 
@@ -44,12 +45,12 @@ namespace IVRPhoneTree.Web.Controllers
         private TwiMLResult Planets()
         {
             var response = new VoiceResponse();
-            var gather = new Gather(action: Url.Action("Interconnect", "PhoneExchange"), numDigits: 1);
+            var gather = new Gather(action: Url.ActionUri("Interconnect", "PhoneExchange"), numDigits: 1);
             gather.Say("To call the planet Broh doe As O G, press 2. To call the planet " +
                      "DuhGo bah, press 3. To call an oober asteroid to your location, press 4. To " +
                      "go back to the main menu, press the star key ",
                      voice: "alice", language: "en-GB", loop: 3);
-            response.Gather(gather);
+            response.Append(gather);
 
             return TwiML(response);
         }

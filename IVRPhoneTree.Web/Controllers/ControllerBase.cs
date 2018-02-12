@@ -1,5 +1,4 @@
-﻿using System.Web.Mvc;
-using Twilio.AspNet.Mvc;
+﻿using Twilio.AspNet.Mvc;
 using Twilio.TwiML;
 
 namespace IVRPhoneTree.Web.Controllers
@@ -13,7 +12,7 @@ namespace IVRPhoneTree.Web.Controllers
                 voice: "alice",
                 language:  "en-GB"
             );
-            response.Redirect(Url.Action("Welcome", "IVR"));
+            response.Redirect(Url.ActionUri("Welcome", "IVR"));
 
             return TwiML(response);
         }
