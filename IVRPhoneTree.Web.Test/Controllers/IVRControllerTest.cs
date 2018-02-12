@@ -24,7 +24,7 @@ namespace IVRPhoneTree.Web.Test.Controllers
             controller.WithCallTo(c => c.Welcome())
                 .ShouldReturnTwiMLResult(data =>
                 {
-                    Assert.That(data.XPathSelectElement("Response/Gather/Play"), Is.Not.Null);
+                    Assert.That(data.XPathSelectElement("Response/Gather/Say"), Is.Not.Null);
                     Assert.That(data.XPathSelectElement("Response/Gather").Attribute("action").Value,
                         Is.EqualTo("/Menu/Show"));
                 });

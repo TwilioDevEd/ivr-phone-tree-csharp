@@ -52,6 +52,11 @@ This project is built using the [ASP.NET MVC](http://www.asp.net/mvc) web framew
 
   ![Configure Voice](http://howtodocs.s3.amazonaws.com/twilio-number-config-all-med.gif)
 
+## Unit Tests
+
+To run the unit tests within Visual Studio, install the NUnit 3 Test Adapter:
+https://marketplace.visualstudio.com/items?itemName=NUnitDevelopers.NUnit3TestAdapter
+
 ## Meta
 
 * No warranty expressed or implied. Software is as is. Diggity.
