@@ -112,8 +112,8 @@
     <Reference Include="Twilio.AspNet.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Twilio.AspNet.Common.5.8.3\lib\net45\Twilio.AspNet.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Twilio.AspNet.Mvc, Version=5.8.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Twilio.AspNet.Mvc.5.8.3\lib\net451\Twilio.AspNet.Mvc.dll</HintPath>
+    <Reference Include="Twilio.AspNet.Mvc, Version=5.9.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Twilio.AspNet.Mvc.5.9.6\lib\net451\Twilio.AspNet.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Twilio.Mvc">
       <HintPath>..\packages\Twilio.Mvc.3.1.15\lib\3.5\Twilio.Mvc.dll</HintPath>
