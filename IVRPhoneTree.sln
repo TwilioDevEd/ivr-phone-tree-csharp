@@ -1,11 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IVRPhoneTree.Web", "IVRPhoneTree.Web\IVRPhoneTree.Web.csproj", "{3F60D72D-D360-43CC-AB7F-16B53CA60EEF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IVRPhoneTree.Web.Test", "IVRPhoneTree.Web.Test\IVRPhoneTree.Web.Test.csproj", "{CA5D33F3-3083-45C3-97F5-09948BC48CA2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F95D2194-11EF-4F2C-BDB8-88E9BB381B5C}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		.mergify.yml = .mergify.yml
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{D772EDC2-88B5-4A4A-8C8C-F8770B8D0E94}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{B781D28E-CADE-4E3A-B993-D92D7C5D1699}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\NetFx.yml = .github\workflows\NetFx.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +38,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D772EDC2-88B5-4A4A-8C8C-F8770B8D0E94} = {F95D2194-11EF-4F2C-BDB8-88E9BB381B5C}
+		{B781D28E-CADE-4E3A-B993-D92D7C5D1699} = {D772EDC2-88B5-4A4A-8C8C-F8770B8D0E94}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F3725EB1-598E-4669-99C7-FC53A2B107EC}
 	EndGlobalSection
 EndGlobal

@@ -38,7 +38,7 @@ This project is built using the [ASP.NET MVC](http://www.asp.net/mvc) web framew
   http://<your-ngrok-subdomain>.ngrok.io/ivr/welcome
   ```
 
-  Remember to update the Local.config file with the generated <your-ngrok-subdomain>.
+  Remember to update the Local.config file with the generated ngrok subdomain.
 
 1. Configure Twilio to call your webhooks.
 
