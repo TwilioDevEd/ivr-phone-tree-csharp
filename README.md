@@ -4,7 +4,7 @@
 
 # IVR Phone Tree: IVR for beginners. Powered by Twilio - ASP.NET MVC
 
-[![Build status](https://ci.appveyor.com/api/projects/status/ktdh5pqmkc39ljng?svg=true)](https://ci.appveyor.com/project/TwilioDevEd/ivr-phone-tree-csharp)
+![](https://github.com/TwilioDevEd/ivr-phone-tree-csharp/workflows/NetFx/badge.svg)
 
 An example application implementing an automated phone line using Twilio.
 
