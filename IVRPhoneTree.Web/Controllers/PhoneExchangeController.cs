@@ -1,15 +1,17 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using Twilio.AspNet.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using Twilio.AspNet.Core;
 using Twilio.TwiML;
 
 namespace IVRPhoneTree.Web.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class PhoneExchangeController : ControllerBase
     {
         // POST: PhoneExchange/Interconnect
-        [HttpPost]
-        public ActionResult Interconnect(string digits)
+        [HttpPost("Interconnect")]
+        public TwiMLResult Interconnect(string digits)
         {
             var userOption = digits;
             var optionPhones = new Dictionary<string, string>

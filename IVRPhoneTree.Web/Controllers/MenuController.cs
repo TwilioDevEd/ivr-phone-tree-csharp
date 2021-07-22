@@ -1,20 +1,23 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
+using Twilio.AspNet.Core;
 using Twilio.AspNet.Mvc;
 using Twilio.TwiML;
 using Twilio.TwiML.Voice;
 
 namespace IVRPhoneTree.Web.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class MenuController : ControllerBase
     {
         // POST: Menu/Show
-        [HttpPost]
-        public ActionResult Show(string digits)
+        [HttpPost("Show")]
+        public TwiMLResult Show(string digits)
         {
             var selectedOption = digits;
-            var optionActions = new Dictionary<string, Func<ActionResult>>()
+            var optionActions = new Dictionary<string, Func<TwiMLResult>>()
             {
                 {"1", ReturnInstructions},
                 {"2", Planets}

@@ -1,20 +1,17 @@
-﻿using System.Web.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Twilio.AspNet.Core;
 using Twilio.AspNet.Mvc;
 using Twilio.TwiML;
 using Twilio.TwiML.Voice;
 
 namespace IVRPhoneTree.Web.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class IVRController : TwilioController
     {
-        // GET: IVR
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         // POST: IVR/Welcome
-        [HttpPost]
+        [HttpPost("Welcome")]
         public TwiMLResult Welcome()
         {
             var response = new VoiceResponse();
