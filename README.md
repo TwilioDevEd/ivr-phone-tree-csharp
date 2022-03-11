@@ -50,7 +50,7 @@ This project is built using the [ASP.NET MVC](http://www.asp.net/mvc) web framew
   http://<your-ngrok-subdomain>.ngrok.io/ivr/welcome
   ```
 
-  [Learn how to configure your Twilio phone number for Programmable Voice](https://www.twilio.com/docs/voice/tutorials/ivr-phone-tree-csharp-mvc#respond-to-the-phone-call),
+  [Learn how to configure your Twilio phone number for Programmable Voice](https://www.twilio.com/docs/voice/tutorials/ivr-phone-tree-csharp-mvc#respond-to-the-phone-call).
 
 ## Unit Tests
 
