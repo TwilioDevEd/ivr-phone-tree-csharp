@@ -43,14 +43,14 @@ This project is built using the [ASP.NET MVC](http://www.asp.net/mvc) web framew
 1. Configure Twilio to call your webhooks.
 
   You will also need to configure Twilio to call your application when calls are
-  received in your [*Twilio Number*](https://www.twilio.com/user/account/messaging/phone-numbers).
+  received in your [*Twilio Number*](https://console.twilio.com/us1/develop/phone-numbers/manage/active?frameUrl=%2Fconsole%2Fphone-numbers%2Fincoming%3Fx-target-region%3Dus1).
   The voice url should look something like this:
 
   ```
   http://<your-ngrok-subdomain>.ngrok.io/ivr/welcome
   ```
 
-  ![Configure Voice](http://howtodocs.s3.amazonaws.com/twilio-number-config-all-med.gif)
+  [Learn how to configure your Twilio phone number for Programmable Voice](https://www.twilio.com/docs/voice/tutorials/ivr-phone-tree-csharp-mvc#respond-to-the-phone-call),
 
 ## Unit Tests
 
