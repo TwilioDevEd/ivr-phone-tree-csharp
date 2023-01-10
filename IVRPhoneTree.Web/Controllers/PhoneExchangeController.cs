@@ -14,9 +14,9 @@ namespace IVRPhoneTree.Web.Controllers
             var userOption = digits;
             var optionPhones = new Dictionary<string, string>
             {
-                {"2", "+19362515374"},
-                {"3", "+19362514886"},
-                {"4", "+15755672172"}
+                {"2", "+19295566487"},
+                {"3", "+17262043675"},
+                {"4", "+16513582243"}
             };
 
             return optionPhones.ContainsKey(userOption)
