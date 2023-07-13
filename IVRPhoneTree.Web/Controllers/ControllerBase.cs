@@ -1,5 +1,6 @@
 ﻿using Twilio.AspNet.Mvc;
 using Twilio.TwiML;
+using Twilio.TwiML.Voice;
 
 namespace IVRPhoneTree.Web.Controllers
 {
@@ -9,7 +10,7 @@ namespace IVRPhoneTree.Web.Controllers
         {
             var response = new VoiceResponse();
             response.Say("Returning to the main menu",
-                voice: "alice",
+                voice: Say.VoiceEnum.PollyAmy,
                 language:  "en-GB"
             );
             response.Redirect(Url.ActionUri("Welcome", "IVR"));
